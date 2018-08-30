@@ -12,7 +12,48 @@
 <script type="text/javascript">
 	<!--菜单处理-->
 </script>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+        url: "${pageContext.request.contextPath}/menu/query",
+        type: "get",
+        dataType: "JSON",
+        success: function (data) {
+            $.each(data, function (index, first) {
+                var c = "";
 
+                $.each(first.children, function (index1, second) {
+                        c += "<p style='text-align: center'><a href='#' data-options=\"iconCls:'icon-search'\" class='easyui-linkbutton' onclick=\"addTabs('" + second.iconCls + "','" + second.title + "','" + second.href + "')\">" + second.title + "</a></p>";
+                    })
+
+
+                    $('#aa').accordion('add', {
+                        title: first.title,
+                        content: c,
+                        iconCls: first.iconCls,
+                        selected: false
+                    });
+                })
+            }
+        })
+    });
+    function addTabs(iconCls, title, href) {
+        /*创建选项卡*/
+        var flag = $("#tt").tabs("exists",title)
+        if (flag){
+            $("#tt").tabs("select",title)
+            console.log(href)
+        }else {
+            $('#tt').tabs('add', {
+                title: title,
+                selected: true,
+                closable: true,
+                href:"${pageContext.request.contextPath}"+href
+            });
+        }
+
+    }
+</script>
 </head>
 <body class="easyui-layout">   
     <div data-options="region:'north',split:true" style="height:60px;background-color:  #5C160C">

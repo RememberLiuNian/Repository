@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Created by Administrator on 2018/8/28.
  */
 @SpringBootApplication
-@MapperScan("com.baizhi.dao")
+@MapperScan("com.baizhi.cmfz.dao")
 public class CmfzApp {
     public static void main(String[] args) {
         SpringApplication.run(CmfzApp.class, args);

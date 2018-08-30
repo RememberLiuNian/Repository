@@ -1,22 +1,22 @@
 package com.baizhi.cmfz.controller;
 
 import com.baizhi.cmfz.entity.User;
-import com.baizhi.cmfz.service.UserService;
+import com.baizhi.cmfz.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class AdminController {
     @Autowired
-    private UserService service;
+    private AdminService service;
 
-    public UserService getService() {
+    public AdminService getService() {
         return service;
     }
 
-    public void setService(UserService service) {
+    public void setService(AdminService service) {
         this.service = service;
     }
 

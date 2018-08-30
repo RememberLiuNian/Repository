@@ -20,5 +20,5 @@ spring:
       charset: UTF-8
       force: true
 mybatis:
-  type-aliases-package: com.baizhi.entity
-  mapper-locations: classpath:/com/baizhi/mapper/*.xml
+  type-aliases-package: com.baizhi.cmfz.entity
+  mapper-locations: classpath:/com/baizhi/cmfz/dao/impl*Mapper.xml

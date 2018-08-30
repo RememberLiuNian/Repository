@@ -1,8 +1,10 @@
 package com.baizhi.cmfz.service.impl;
 
 
-import com.baizhi.cmfz.dao.UserDAO;
+import com.baizhi.cmfz.dao.AdminDAO;
+import com.baizhi.cmfz.entity.Admin;
 import com.baizhi.cmfz.entity.User;
+import com.baizhi.cmfz.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,22 +13,22 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserServiceImpl {
+public class AdminServiceImpl {
     @Autowired
-    private UserDAO dao;
+    private AdminDAO dao;
 
-    public UserDAO getDao() {
+    public AdminDAO getDao() {
         return dao;
     }
 
-    public void setDao(UserDAO dao) {
+    public void setDao(AdminDAO dao) {
         this.dao = dao;
     }
 
-    public void insert(User user){
-        dao.insert(user);
+    public void insert(Admin admin){
+        dao.insert(admin);
     }
-    public List<User> queryAll(){
+    public List<Admin> queryAll(){
         return dao.queryAll();
     }
 
