@@ -18,12 +18,12 @@ public class Chapter implements Serializable {
     @JSONField(format = "yyyy/MM/dd")
     private Date createDate;
 
-    private String albumId;
+    private String albumID;
 
     private static final long serialVersionUID = 1L;
 
     @Override
-    public String toString() {
+    public String toString(){
         return "Chapter{" +
                 "ID=" + ID +
                 ", title='" + title + '\'' +
@@ -31,23 +31,23 @@ public class Chapter implements Serializable {
                 ", size=" + size +
                 ", duration=" + duration +
                 ", createDate=" + createDate +
-                ", albumId='" + albumId + '\'' +
+                ", albumId='" + albumID + '\'' +
                 '}';
     }
 
-    public Integer getID() {
+    public Integer getID(){
         return ID;
     }
 
-    public void setID(Integer ID) {
+    public void setID(Integer ID){
         this.ID = ID;
     }
 
-    public String getTitle() {
+    public String getTitle(){
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title){
         this.title = title;
     }
 
@@ -83,12 +83,12 @@ public class Chapter implements Serializable {
         this.createDate = createDate;
     }
 
-    public String getAlbumId() {
-        return albumId;
+    public String getAlbumID() {
+        return albumID;
     }
 
-    public void setAlbumId(String albumId) {
-        this.albumId = albumId;
+    public void setAlbumID(String albumId) {
+        this.albumID = albumID;
     }
 
     public static long getSerialVersionUID() {
@@ -99,7 +99,7 @@ public class Chapter implements Serializable {
 
     }
 
-    public Chapter(Integer ID, String title, String url, Double size, Integer duration, Date createDate, String albumId) {
+    public Chapter(Integer ID, String title, String url, Double size, Integer duration, Date createDate, String albumID) {
 
         this.ID = ID;
         this.title = title;
@@ -107,6 +107,6 @@ public class Chapter implements Serializable {
         this.size = size;
         this.duration = duration;
         this.createDate = createDate;
-        this.albumId = albumId;
+        this.albumID = albumID;
     }
 }

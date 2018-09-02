@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class AdminServiceImpl {
+public class AdminServiceImpl implements AdminService{
     @Autowired
     private AdminDAO dao;
 
@@ -25,9 +25,11 @@ public class AdminServiceImpl {
         this.dao = dao;
     }
 
-    public void insert(Admin admin){
+    @Override
+    public void insert(Admin admin) {
         dao.insert(admin);
     }
+
     public List<Admin> queryAll(){
         return dao.queryAll();
     }
