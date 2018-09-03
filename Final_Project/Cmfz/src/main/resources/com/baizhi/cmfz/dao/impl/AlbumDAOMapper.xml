@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.cmfz.dao.AlbumDao" >
+
+  <!--<cache type="com.baizhi.cmfz.util.RedisCache">-->
+  <!--使用 memcached二级缓存-->
+  <cache type="org.mybatis.caches.memcached.MemcachedCache" />
+  <!--</cache>-->
+
+  <resultMap id="BaseResultMap" type="com.baizhi.cmfz.entity.Album" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="DOUBLE" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="broadcast" property="broadcast" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="brief" property="brief" jdbcType="VARCHAR" />
+    <result column="publishDate" property="publishDate" jdbcType="DATE" />
+    <result column="coverImg" property="coverImg" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="createDate" property="createDate" jdbcType="DATE" />
+  </resultMap>
+
+  <resultMap id="albumRm1" type="Album">
+    <id column="aid" property="id" />
+    <result column="atitle" property="title" />
+    <result column="ascore" property="score" />
+    <result column="aauthor" property="author" />
+    <result column="abroadcast" property="broadcast" />
+    <result column="acount" property="count" />
+    <result column="abrief" property="brief" />
+    <result column="apublishDate" property="publishDate" />
+    <result column="acoverImg" property="coverImg" />
+    <result column="astatus" property="status" />
+    <result column="acreateDate" property="createDate" />
+    <collection  property="children" ofType="Chapter">
+      <id column="cid" property="id" />
+      <result column="ctitle" property="title" />
+      <result column="curl" property="url" />
+      <result column="csize" property="size" />
+      <result column="cduration" property="duration" />
+      <result column="ccreateDate" property="createDate" />
+    </collection>
+  </resultMap>
+
+  <resultMap id="albumRm2" type="Album">
+    <id column="aid" property="id" />
+    <result column="atitle" property="title" />
+    <result column="ascore" property="score" />
+    <result column="aauthor" property="author" />
+    <result column="abroadcast" property="broadcast" />
+    <result column="acount" property="count" />
+    <result column="abrief" property="brief" />
+    <result column="apublishDate" property="publishDate" />
+    <result column="acoverImg" property="coverImg" />
+    <collection  property="children" ofType="Chapter">
+      <id column="cid" property="id" />
+      <result column="ctitle" property="title" />
+      <result column="curl" property="url" />
+      <result column="csize" property="size" />
+      <result column="cduration" property="duration" />
+    </collection>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, title, score, author, broadcast, count, brief, publishDate, coverImg, status, 
+    createDate
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="String" >
+    select 
+    <include refid="Base_Column_List" />
+    from album
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="String" >
+    delete from album
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.baizhi.cmfz.entity.Album" >
+    insert into album (id, title, score, 
+      author, broadcast, count, 
+      brief, publishDate, coverImg, 
+      status, createDate)
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{score,jdbcType=DOUBLE},
+      #{author,jdbcType=VARCHAR}, #{broadcast,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
+      #{brief,jdbcType=VARCHAR}, #{publishDate,jdbcType=DATE}, #{coverImg,jdbcType=VARCHAR},
+      #{status,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.baizhi.cmfz.entity.Album" >
+    update album
+    set title = #{title,jdbcType=VARCHAR},
+      score = #{score,jdbcType=DOUBLE},
+      author = #{author,jdbcType=VARCHAR},
+      broadcast = #{broadcast,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      brief = #{brief,jdbcType=VARCHAR},
+      publishDate = #{publishDate,jdbcType=DATE},
+      coverImg = #{coverImg,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      createDate = #{createDate,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--分页展示-->
+  <select id="selectAlbumByPage" resultMap="albumRm1">
+    select a.id aid,a.title atitle,a.score ascore,a.author aauthor,a.broadcast abroadcast,a.count acount,a.brief abrief,
+            a.publishDate apublishDate,a.coverImg acoverImg,a.status astatus,a.createDate acreateDate,
+             c.id cid,c.title ctitle,c.url curl,c.size csize,c.duration cduration,c.createDate ccreateDate
+    from (select * from album limit #{start},#{page}) a left join chapter c on a.id=c.albumId
+  </select>
+
+  <!--总条数-->
+  <select id="selectCount" resultType="int">
+    select count(1) from album
+  </select>
+
+  <!--更改count字段的值-->
+  <update id="updateCountById" >
+    update album set count=#{count} where id=#{id}
+  </update>
+
+  <!--APP-->
+  <!--查询专辑，按照上架时间排名，前6个-->
+  <select id="selectAlbumByDate" resultType="Album">
+      select
+      id,title,coverImg,publishDate,count
+      from album where status='Y'
+      order by publishDate desc
+       limit 0,6
+  </select>
+
+  <!--查询所有未删除专辑-->
+  <select id="selectAllAlbum" resultType="Album">
+    select
+    id,title,coverImg,publishDate,count
+    from album where status='Y'
+  </select>
+
+  <!--app展示专辑-->
+  <select id="selectById" resultMap="albumRm2">
+    select a.id aid,a.title atitle,a.score ascore,a.author aauthor,a.broadcast abroadcast,a.count acount,a.brief abrief,
+    a.publishDate apublishDate,a.coverImg acoverImg,
+    c.id cid,c.title ctitle,c.url curl,c.size csize,c.duration cduration
+    from  album  a left join chapter c on a.id=c.albumId
+    where a.id=#{id}
+  </select>
+
+</mapper>

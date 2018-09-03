@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.cmfz.dao.LogDao" >
+
+
+  <!--mybatis ehcache缓存配置 -->
+  <!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 -->
+  <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>-->
+
+  <!--根据需求调整缓存参数：-->
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+    <property name="timeToIdleSeconds" value="3600"/>
+    <property name="timeToLiveSeconds" value="3600"/>
+    <!-- 同ehcache参数maxElementsInMemory -->
+    <property name="maxEntriesLocalHeap" value="1000"/>
+    <!-- 同ehcache参数maxElementsOnDisk -->
+    <property name="maxEntriesLocalDisk" value="10000000"/>
+    <property name="memoryStoreEvictionPolicy" value="LRU"/>
+  </cache>
+
+  <resultMap id="BaseResultMap" type="com.baizhi.cmfz.entity.Log" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, username, createDate, method, result
+  </sql>
+
+
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertLog" parameterType="com.baizhi.cmfz.entity.Log" >
+    insert into log (id, username, createDate, 
+      method, result)
+    values (0, #{username,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+      #{method,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateById" parameterType="com.baizhi.cmfz.entity.Log" >
+    update log
+    set username = #{username,jdbcType=VARCHAR},
+      createDate = #{createDate,jdbcType=TIMESTAMP},
+      method = #{method,jdbcType=VARCHAR},
+      result = #{result,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--分页展示-->
+  <select id="selectLogByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from log
+    limit #{start},#{page}
+  </select>
+  <!--总条数-->
+  <select id="selectCount" resultType="int">
+    select count(1) from log
+  </select>
+
+</mapper>
