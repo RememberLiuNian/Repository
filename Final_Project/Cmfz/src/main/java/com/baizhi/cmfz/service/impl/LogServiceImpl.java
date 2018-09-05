@@ -1,6 +1,6 @@
 package com.baizhi.cmfz.service.impl;
 
-import com.baizhi.cmfz.dao.LogDao;
+import com.baizhi.cmfz.dao.LogDAO;
 import com.baizhi.cmfz.entity.Log;
 import com.baizhi.cmfz.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.Map;
 @Transactional
 public class LogServiceImpl implements LogService {
     @Autowired
-    private LogDao logDao;
+        private LogDAO logDao;
     //分页展示
     @Override
     public Map getLogByPage(int rows, int page) {

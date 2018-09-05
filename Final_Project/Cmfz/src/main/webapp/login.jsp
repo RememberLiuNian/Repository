@@ -20,7 +20,7 @@
                 var code = obj.value;
                 var isOk = true;
                 $.ajax({
-                    url: '${pageContext.request.contextPath}/kaptcha/kaptchaVerify',
+                    url: '${pageContext.request.contextPath}/kaptcha/defaultKaptcha',
                     data: {"code": code},
                     async: false,
                     success: function (data) {

@@ -13,7 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
+import java.util.UUID;
 import java.util.Map;
 
 @Controller
@@ -21,8 +23,6 @@ import java.util.Map;
 public class BannerController {
     @Autowired
     private BannerService bannerService;
-    @Autowired
-    private FastFileStorageClient client;
 
     //分页展示轮播图片信息
     @RequestMapping("/getBanners")
@@ -47,26 +47,9 @@ public class BannerController {
         }
     }
 
-    //添加轮播图片
-    @RequestMapping("/addBanner")
-    public @ResponseBody  boolean addBanner(MultipartFile photo, Banner banner){
-        //获取上传的文件名称
-        String filename = photo.getOriginalFilename();
-        //获取文件后缀名
-        String extension = FilenameUtils.getExtension(filename);
-        try {
-            //文件写入到fastDFS中
-            StorePath storePath = client.uploadFile(photo.getInputStream(), photo.getSize(), extension, null);
-            String url = storePath.getFullPath();
-            banner.setUrl(url);
-            bannerService.appendBanner(banner);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
-    /*//添加轮播图片
+
+    //添加轮播图片
     @RequestMapping("/addBanner")
     public @ResponseBody  boolean addBanner(MultipartFile photo, Banner banner, HttpServletRequest request){
         //获取上传的文件名称
@@ -85,7 +68,7 @@ public class BannerController {
         } catch (Exception e) {
             return false;
         }
-    }*/
+    }
 
     //更新图片状态
     @RequestMapping("/updateBanner")

@@ -2,7 +2,6 @@ package com.baizhi.cmfz.aspect;
 
 import com.baizhi.cmfz.entity.Admin;
 import com.baizhi.cmfz.entity.Log;
-import com.baizhi.cmfz.entity.User;
 import com.baizhi.cmfz.service.LogService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
