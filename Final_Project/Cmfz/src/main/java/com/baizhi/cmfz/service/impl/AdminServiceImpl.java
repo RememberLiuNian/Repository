@@ -17,21 +17,16 @@ public class AdminServiceImpl implements AdminService{
     @Autowired
     private AdminDAO dao;
 
-    public AdminDAO getDao() {
-        return dao;
-    }
-
-    public void setDao(AdminDAO dao) {
-        this.dao = dao;
-    }
-
+    //登陆验证
     @Override
-    public void insert(Admin admin) {
-        dao.insert(admin);
+    public void loginVerify(Admin admin) {
+        System.out.println(admin);
+        Admin admin2 = dao.selectAdminByNameAndPassword(admin.getName(),admin.getPassword());
+        System.out.println(admin2);
+        if (admin2==null){
+            throw new RuntimeException("账号或密码错误");
+        }else{
+            admin.setID(admin2.getID());
+        }
     }
-
-    public List<Admin> queryAll(){
-        return dao.queryAll();
-    }
-
 }

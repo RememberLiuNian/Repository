@@ -24,7 +24,9 @@ public class MenuController {
     }
     @RequestMapping("/query")
     public @ResponseBody List<Menu> queryMenu(){
-        return service.queryMenu();
+        List<Menu> list = service.queryMenu();
+        System.out.println(list);
+        return list;
     }
 
 }

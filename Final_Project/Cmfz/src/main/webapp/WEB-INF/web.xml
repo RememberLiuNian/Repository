@@ -4,7 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-    <servlet>
+    <!--<servlet>
         <servlet-name>Kaptcha</servlet-name>
         <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
         <init-param>
@@ -23,6 +23,6 @@
              <param-name>kaptcha.noise.impl</param-name>
              <param-value>com.google.code.kaptcha.impl.NoNoise</param-value>
         </init-param>
-    </servlet>
+    </servlet>-->
 </web-app>
 

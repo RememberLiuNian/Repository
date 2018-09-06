@@ -19,9 +19,11 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/kaptcha")
 public class KaptchaController {
+    @Autowired
+    private DefaultKaptcha defaultKaptcha;
+
     @RequestMapping("/defaultKaptcha")
     public void defaultKaptcha(HttpServletResponse response, HttpSession session) throws Exception{
-        DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
         //生产验证码
         String code = defaultKaptcha.createText();
         //将验证码存入session中

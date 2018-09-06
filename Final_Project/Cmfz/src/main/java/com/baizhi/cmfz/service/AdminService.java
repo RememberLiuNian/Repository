@@ -6,7 +6,6 @@ import com.baizhi.cmfz.entity.User;
 import java.util.List;
 
 public interface AdminService {
-    public void insert(Admin admin);
-    public List<Admin> queryAll();
+    void loginVerify(Admin admin);
 
 }
