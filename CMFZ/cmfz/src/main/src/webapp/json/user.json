@@ -1,0 +1,38 @@
+[{
+  "id": "parent",
+  "text": "请选择要导出的数据",
+  "children": [{
+    "id": "name",
+    "text": "名字"
+  },{
+    "id": "dharma",
+    "text": "法号"
+  },{
+    "id": "photo",
+    "text": "头像路径"
+  },{
+    "id": "password",
+    "text": "密码"
+  },{
+    "id": "salt",
+    "text": "私盐"
+  },{
+    "id": "sex",
+    "text": "性别"
+  },{
+    "id": "location",
+    "text": "地区"
+  },{
+    "id": "sign",
+    "text": "签名"
+  },{
+    "id": "status",
+    "text": "状态"
+  },{
+    "id": "phoneNum",
+    "text": "手机号"
+  },{
+    "id": "registDate",
+    "text": "注册时间"
+  }]
+}]

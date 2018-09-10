@@ -21,4 +21,4 @@ spring:
       force: true
 mybatis:
   type-aliases-package: com.baizhi.cmfz.entity
-  mapper-locations: classpath:/com/baizhi/cmfz/dao/impl*Mapper.xml
+  mapper-locations: classpath:/com/baizhi/cmfz/dao/impl*DAOMapper.xml

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper  namespace="com.baizhi.cmfz.dao.MenuDao" >
+<mapper  namespace="com.baizhi.cmfz.dao.MenuDAO" >
 
     <resultMap id="rmMenu" type="Menu">
         <id column="m1ID" property="ID"></id>
@@ -17,7 +17,7 @@
 
     <select id="queryMenu"  resultMap="Menu">
         select m1.ID m1ID,m1.title m1title,m1.iconCls m1iconCls,m2.ID m2ID,m2.title m2title,m2.iconCls m2iconCls,m2.href m2href
-          from menu m1 left join menu m2 on m1.id=m2.parentId
+          from menu m1 left join menu m2 on m1.ID=m2.parentID
           where m1.parentId IS NULL
     </select>
 

@@ -22,6 +22,7 @@ public class AdminServiceImpl implements AdminService{
     public void loginVerify(Admin admin) {
         System.out.println(admin);
         Admin admin2 = dao.selectAdminByNameAndPassword(admin.getName(),admin.getPassword());
+        System.out.println(3);
         System.out.println(admin2);
         if (admin2==null){
             throw new RuntimeException("账号或密码错误");
