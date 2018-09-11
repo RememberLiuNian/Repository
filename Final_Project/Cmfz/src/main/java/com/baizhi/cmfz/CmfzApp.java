@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Created by Administrator on 2018/8/28.
  */
 @SpringBootApplication
-@MapperScan("com.baizhi.cmfz.dao")
+@MapperScan(value = "com.baizhi.cmfz.dao")
 public class CmfzApp extends WebMvcConfigurerAdapter {
     public static void main(String[] args) {
         SpringApplication.run(CmfzApp.class,args);

@@ -15,7 +15,7 @@
         </collection>
     </resultMap>
 
-    <select id="queryMenu"  resultMap="Menu">
+    <select id="queryMenu"  resultMap="rmMenu">
         select m1.ID m1ID,m1.title m1title,m1.iconCls m1iconCls,m2.ID m2ID,m2.title m2title,m2.iconCls m2iconCls,m2.href m2href
           from menu m1 left join menu m2 on m1.ID=m2.parentID
           where m1.parentId IS NULL

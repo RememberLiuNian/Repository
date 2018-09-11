@@ -1,15 +1,15 @@
 <%@page isELIgnored="false" pageEncoding="UTF-8" contentType="text/html; UTF-8" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3"/>
+    <meta http-equiv="description" content="this is my page"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
     <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" href="css/common.css" type="text/css"></link>
-    <link rel="stylesheet" href="css/login.css" type="text/css"></link>
-    <link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="themes/IconExtension.css">
+    <link rel="stylesheet" href="css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="css/login.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="themes/IconExtension.css"/>
     <script type="text/javascript" src="script/jquery.js"></script>
     <script type="text/javascript" src="script/common.js"></script>
     <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
@@ -49,7 +49,7 @@
             });
 
             //用户名验证
-            $('#usernameInput').validatebox({
+            $('#nameInput').validatebox({
                 required: true,
                 validType: 'verifyUsername',
                 missingMessage: '请输入用户名'
@@ -117,8 +117,8 @@
                     用户名:
                 </th>
                 <td>
-                    <input type="text" name="name" class="text" maxlength="20" id="usernameInput"/>
-                    <span id="usernameSpan"></span>
+                    <input type="text" name="name" class="text" maxlength="20" id="nameInput"/>
+                    <span id="nameSpan"></span>
                 </td>
             </tr>
             <tr>

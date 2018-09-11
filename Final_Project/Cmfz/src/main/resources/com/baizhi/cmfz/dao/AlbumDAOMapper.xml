@@ -2,11 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.cmfz.dao.AlbumDAO" >
 
-  <!--<cache type="com.baizhi.cmfz.util.RedisCache">-->
-  <!--使用 memcached二级缓存-->
-  <cache type="org.mybatis.caches.memcached.MemcachedCache" />
-  <!--</cache>-->
-
   <resultMap id="BaseResultMap" type="com.baizhi.cmfz.entity.Album" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />

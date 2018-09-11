@@ -13,18 +13,10 @@ import java.util.List;
 @RequestMapping("/menu")
 public class MenuController {
     @Autowired
-    private MenuService service;
-
-    public MenuService getService() {
-        return service;
-    }
-
-    public void setService(MenuService service) {
-        this.service = service;
-    }
+    private MenuService menuService;
     @RequestMapping("/query")
     public @ResponseBody List<Menu> queryMenu(){
-        List<Menu> list = service.queryMenu();
+        List<Menu> list = menuService.queryMenu();
         System.out.println(list);
         return list;
     }
